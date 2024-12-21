@@ -1,0 +1,45 @@
+<configuration>
+    <!-- Определение шаблона для вывода логов -->
+    <property name="LOG_PATTERN" value="%yellow(%d{HH:mm:ss.SSS}) [%thread] %highlight(%level) %logger{36} - %cyan(%msg%n)"/>
+    <property name="FILE_LOG_PATH" value="logs/authlogs.log"/>
+
+    <!-- Консольный аппендер -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Файловый аппендер (добавлен) -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${FILE_LOG_PATH}</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Аппендер для WARN/ERROR -->
+    <appender name="WARN_ERROR_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/warn_error.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- Основной root-логгер -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="WARN_ERROR_FILE"/>
+    </root>
+</configuration>
