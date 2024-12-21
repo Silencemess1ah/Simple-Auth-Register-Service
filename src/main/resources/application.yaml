@@ -28,7 +28,7 @@ spring:
       swaggerUri: "/swagger-ui/**"
       apiDocsUri: "/v3/api-docs/**"
     jwt:
-      secretKey: "My_secret_key" #todo change key
+      secretKey: #secret #todo change key
       keyCryptoAlgorithm: "HmacSHA256"
       jwtAlgorithm: "HS256"
       expirationTime: 2 #in hours
@@ -39,16 +39,16 @@ spring:
       client:
         registration:
           github:
-            client-id: "Ov23liIcpmew9m0l1RST" #todo hide api keys and ids
-            client-secret: "77fca64e2979b1f645a31706c3785e18adb30690"
+            client-id: #secret #todo hide api keys and ids
+            client-secret: #secret
             scope:
               - read:user
               - user:email
             redirect-uri: "{baseUrl}/v1/auth/login/oauth2/code/github"
             client-name: GitHub
           google:
-            client-id: "1098562031688-rtqjtc8695hm353cg6ae1dcd5qkqj12f.apps.googleusercontent.com"
-            client-secret: "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"
+            client-id: #secret
+            client-secret: #secret
             scope:
               - email
               - profile
